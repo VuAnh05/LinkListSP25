@@ -8,10 +8,10 @@ public class SinglyLinkedList {
             return;
         }
         Node temp = head;
-        while (temp.getNext() != null) {
-            temp = temp.getNext();
+        while (temp.next != null) {
+            temp = temp.next;
         }
-        temp.setNext(newNode);
+        temp.next = newNode;
     }
 
     public void addFirst(int data) {
@@ -20,7 +20,7 @@ public class SinglyLinkedList {
             head = newNode;
             return;
         }
-        newNode.setNext(head);
+        newNode.next = head;
         head = newNode;
     }
 
@@ -30,9 +30,9 @@ public class SinglyLinkedList {
         }
         Node temp = head;
         for (int i = 0; i < index; i++) {
-            temp = temp.getNext();
+            temp = temp.next;
         }
-        return temp.getData();
+        return temp.data;
     }
 
     public void addNode1(int index, int data) {
@@ -47,11 +47,11 @@ public class SinglyLinkedList {
         } else {
             Node temp = head;
             for (int i = 0; i < index - 1; i++) {
-                temp = temp.getNext();
+                temp = temp.next;
             }
-            Node nextNode = temp.getNext();
-            temp.setNext(newNode);
-            newNode.setNext(nextNode);
+            Node nextNode = temp.next;
+            temp.next = newNode;
+            newNode.next = nextNode;
         }
     }
 
@@ -65,16 +65,16 @@ public class SinglyLinkedList {
         Node preNode = null;
         for (int i = 0; i < index; i++) {
             preNode = temp;
-            temp = temp.getNext();
+            temp = temp.next;
         }
-        newNode.setNext(temp);
-        preNode.setNext(newNode);
+        newNode.next = temp;
+        preNode.next = newNode;
     }
 
     public void removeFirst() {
         if (head == null)
             return;
-        head = head.getNext();
+        head = head.next;
     }
 
     public void removeLast() {
@@ -83,14 +83,14 @@ public class SinglyLinkedList {
         }
         Node temp = head;
         Node preNode = null;
-        if (head.getNext() == null) {
+        if (head.next == null) {
             removeFirst();
         }
-        while (temp.getNext() != null) {
+        while (temp.next != null) {
             preNode = temp;
-            temp = temp.getNext();
+            temp = temp.next;
         }
-        preNode.setNext(null);
+        preNode.next = null;
     }
 
     public void deleteAtIndex(int index) {
@@ -101,7 +101,7 @@ public class SinglyLinkedList {
         if (head == null) {
             return;
         }
-        if (head.getNext() == null) {
+        if (head.next == null) {
             removeFirst();
             return;
         }
@@ -113,10 +113,10 @@ public class SinglyLinkedList {
             return;
         }
         for (int i = 0; i < index - 1; i++) {
-            temp = temp.getNext();
+            temp = temp.next;
         }
-        if (temp != null && temp.getNext() != null) {
-            temp.setNext(temp.getNext().getNext());
+        if (temp != null && temp.next != null) {
+            temp = temp.next.next;
         }
 
     }
@@ -124,18 +124,18 @@ public class SinglyLinkedList {
     public int getLength() {
         Node temp = head;
         int cnt = 0;
-        while (temp.getNext() != null) {
+        while (temp.next != null) {
             cnt++;
-            temp = temp.getNext();
+            temp = temp.next;
         }
         return cnt;
     }
 
     public void printListNode() {
         Node temp = head;
-        while (temp.getNext() != null) {
-            System.out.print(temp.getData() + " -> ");
-            temp = temp.getNext();
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
         }
         System.out.println("null");
     }
@@ -145,8 +145,9 @@ public class SinglyLinkedList {
         test.addFirst(1);
         test.addFirst(2);
         test.addLast(12);
+        test.addLast(30);
         test.addFirst(51);
-        test.addNode2(3, 4);
+        // test.addNode2(3, 4);
         test.printListNode();
         test.deleteAtIndex(1);
         test.printListNode();
